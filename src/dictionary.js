@@ -4,15 +4,18 @@ import config from './config';
 
 const dictionary = path.join(__dirname, config.dictionary.sowpods);
 const init = (callback) => {
-  let wordCount = 0;
-  let words = [];
+
+  if(!fs.existsSync(dictionary)) {
+    return callback(`Error: File does not exist: ${dictionary}`);
+  }
 
   fs.readFile(dictionary, 'utf8', (err, dict) => {
+
     if(err) {
-      throw err;
+      return callback(err);
     }
 
-    words = dict.split('\n');
+    const words = dict.split('\n');
     words.forEach((word) => {
       if(word !== '') {
         // do something with the word
@@ -20,11 +23,14 @@ const init = (callback) => {
     });
 
     if(callback && typeof callback === 'function') {
-      return callback(words.length);
+      return callback(null, {
+        wordCount: words.length
+      });
     }
-  });
 
-  return null;
+    // return counter if no callback is passed
+    return words.length;
+  });
 }
 
 export default {
