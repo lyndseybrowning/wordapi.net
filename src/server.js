@@ -8,10 +8,8 @@ const port = process.env.PORT || config.port;
 const server = {
   init(dictionary) {
     app.server = http.createServer(app);
+    app.use('/', express.static(`${__dirname}/public`));
     app.server.listen(port);
-    app.get('/', (err, res) => {
-      res.send(`Dictionary Loaded: ${dictionary.wordCount} words, yeah!`);
-    });
   }
 };
 
