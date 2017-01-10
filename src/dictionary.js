@@ -1,38 +1,39 @@
 import path from 'path';
 import fs from 'fs';
 import config from './config';
+import trie from './trie';
 
-const dictionary = path.join(__dirname, config.dictionary.sowpods);
-const init = (callback) => {
-
-  if(!fs.existsSync(dictionary)) {
-    return callback(`Error: File does not exist: ${dictionary}`);
-  }
-
-  fs.readFile(dictionary, 'utf8', (err, dict) => {
-
-    if(err) {
-      return callback(err);
+const file = path.join(__dirname, config.dictionary.sowpods);
+const dictionary = {
+  init(callback) {
+    if(!fs.existsSync(file)) {
+      return callback(`Error: File does not exist: ${dictionary}`);
     }
 
-    const words = dict.split('\n');
-    words.forEach((word) => {
-      if(word !== '') {
-        // do something with the word
+    fs.readFile(file, 'utf8', (err, dict) => {
+      if(err) {
+        return callback(err);
       }
-    });
 
-    if(callback && typeof callback === 'function') {
-      return callback(null, {
-        wordCount: words.length
+      const words = dict.split('\n');
+      // add each word to the trie
+      words.forEach((word) => {
+        if(word !== '') {
+          trie.add(word);
+        }
       });
-    }
 
-    // return counter if no callback is passed
-    return words.length;
-  });
+      if(callback && typeof callback === 'function') {
+        return callback(null, {
+          wordList: trie.get(),
+          wordCount: words.length
+        });
+      }
+
+      // return counter if no callback is passed
+      return words.length;
+    });
+  }
 }
 
-export default {
-  init
-};
+export default dictionary;
