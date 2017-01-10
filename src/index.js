@@ -5,6 +5,5 @@ dictionary.init((err, res) => {
   if(err) {
     throw err;
   }
-
   server.init(res);
 });

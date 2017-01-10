@@ -31,7 +31,7 @@ const trie = {
 
   // Checks to see if a word exists in the trie
   // returns boolean
-  containsWord(word) {
+  containsWord(word, customTrie = null) {
       if(typeof word !== 'string') {
       	throw(`Invalid parameter passed to trie.containsWord(string word): ${word}. Expected string.`);
       }
@@ -40,7 +40,7 @@ const trie = {
         return false;
       }
 
-      let currentNode = _trie;
+      let currentNode = customTrie || _trie;
       return word.split('').every((letter, index) => {
         if(!currentNode[letter]) {
         	return false;
