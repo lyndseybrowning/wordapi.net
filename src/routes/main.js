@@ -1,10 +1,21 @@
-import trie from '../trie.js';
+import fs from 'fs';
 
-export default {
+function initRoute(app, route) {
+  require(`./${route}`)(app);
+}
+
+function filterRoutes(filename) {
+  return filename[0] === '_';
+}
+
+const routes = {
   init(app) {
-    app.get('/exists/:word', (req, res) => {
-      const word = req.params.word;
-      res.send(trie.contains(word));
+    fs.readdir(__dirname, (err, files) => {
+      files
+        .filter(filterRoutes)
+        .forEach(initRoute.bind(null, app));
     });
   }
-}
+};
+
+export default routes;
