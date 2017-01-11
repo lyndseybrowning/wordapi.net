@@ -16,22 +16,12 @@ const dictionary = {
       }
 
       const words = dict.split('\n');
-      // add each word to the trie
-      words.forEach((word) => {
-        if(word !== '') {
-          trie.add(word);
-        }
-      });
+      const wordList = trie.init(words);
 
       if(callback && typeof callback === 'function') {
-        return callback(null, {
-          wordList: trie.get(),
-          wordCount: words.length
-        });
+        return callback(null, wordList);
       }
-
-      // return counter if no callback is passed
-      return words.length;
+      return wordList;
     });
   }
 }

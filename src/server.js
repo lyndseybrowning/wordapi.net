@@ -7,11 +7,11 @@ const app = express();
 const port = process.env.PORT || config.port;
 
 const server = {
-  init(dictionary) {
+  init() {
     app.server = http.createServer(app);
     app.use('/', express.static(`${__dirname}/public`));
     app.server.listen(port);
-    routes.init(app, dictionary);
+    routes.init(app);
   }
 };
 

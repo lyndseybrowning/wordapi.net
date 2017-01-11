@@ -1,73 +1,65 @@
-const _trie = {};
+let _trie = {};
+
+function addWord(word) {
+  if(word === '') {
+    return null;
+  }
+
+  word = word.replace(/\r/g, '');
+
+  let node = _trie;
+  word.toLowerCase().split('').forEach((letter, index) => {
+    node[letter] = node[letter] || {};
+    node = node[letter];
+
+    if(index === word.length - 1) {
+      node.$ = 1;
+    }
+  });
+}
 
 const trie = {
-  // returns the existing private _trie object
+  init(arrayOfWords) {
+    arrayOfWords.forEach(addWord);
+    return _trie;
+  },
+
   get() {
     return _trie;
   },
 
-  // Add a new word to the Trie
-  // returns boolean
-  add(word) {
-    if(word == null || word === '') {
+  contains(word, trie = _trie) {
+    if(word === '') {
       return false;
     }
 
-    let currentNode = _trie;
-    word.toLowerCase().split('').forEach((letter, index) => {
-      if(!currentNode[letter]) {
-        currentNode[letter] = {};
-      }
-      // reached the end of the word?
-      if(index === word.length - 1) {
-        currentNode.$ = 1;
-      } else {
-        currentNode = currentNode[letter];
-      }
-    });
+    let node = trie;
 
-    return true;
+    return word.split('').every((letter, index) => {
+      if(!node[letter]) {
+      	return false;
+      }
+      node = node[letter];
+
+      if(index === word.length - 1) {
+        return node.$ === 1;
+      }
+    	return letter;
+    });
   },
 
-  // Checks to see if a word exists in the trie
-  // returns boolean
-  containsWord(word, customTrie = null) {
-      if(typeof word !== 'string') {
-      	throw(`Invalid parameter passed to trie.containsWord(string word): ${word}. Expected string.`);
-      }
+  isPrefix(prefix, trie = _trie) {
+    let node = trie;
 
-    	if(word === '') {
+    return prefix.split('').every(entry => {
+      if(!node[entry]) {
         return false;
       }
 
-      let currentNode = customTrie || _trie;
-      return word.split('').every((letter, index) => {
-        if(!currentNode[letter]) {
-        	return false;
-        }
-        currentNode = currentNode[letter];
-
-        if(index === word.length - 1) {
-          return currentNode.$ === 1;
-        }
-      	return letter;
-      });
-    },
-
-    // checks that a prefix exists in the trie
-    // returns boolean
-    isValidPrefix(prefix) {
-      let currentNode = _trie;
-
-      return prefix.split('').every(letter => {
-        if(!currentNode[letter]) {
-          return false;
-        }
-        currentNode = currentNode[letter];
-        return true;
-      });
-    }
-
+      node = node[entry];
+      return true;
+    });
+  }
 };
 
 export default trie;
