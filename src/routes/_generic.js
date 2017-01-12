@@ -1,9 +1,13 @@
 import trie from '../trie';
 
 const generics = (app) => {
-  app.get('/exists/:word', (req, res) => {
+  app.get('/api/valid/:word', (req, res) => {
     const word = req.params.word;
-    res.send(trie.contains(word));
+
+    res.send({
+      word,
+      valid: trie.contains(word)
+    });
   });
 }
 
