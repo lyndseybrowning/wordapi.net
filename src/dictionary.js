@@ -7,7 +7,7 @@ const file = path.join(__dirname, config.dictionary.sowpods);
 const dictionary = {
   init(callback) {
     if(!fs.existsSync(file)) {
-      return callback(`Error: File does not exist: ${dictionary}`);
+      return callback(`Error: File does not exist: ${file}`);
     }
 
     fs.readFile(file, 'utf8', (err, dict) => {
