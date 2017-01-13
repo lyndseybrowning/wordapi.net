@@ -1,7 +1,11 @@
 import fs from 'fs';
 
 function initRoute(app, route) {
-  require(`./${route}`)(app);
+  const _route = require(`./${route}`);
+
+  if(typeof _route === 'function') {
+    _route(app);
+  }
 }
 
 function filterRoutes(filename) {
