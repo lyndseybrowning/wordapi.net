@@ -1,6 +1,8 @@
 import trie from '../trie';
 import dictionary from '../dictionary';
 
+const _dictionary = dictionary.get();
+
 function filterByLength(length, word) {
   return word.length === length;
 }
@@ -8,7 +10,7 @@ function filterByLength(length, word) {
 const lists = (app) => {
   app.get('/api/lists', (req, res) => {
     const length = parseInt(req.query.length, 10);
-    const wordList = dictionary.get().filter(filterByLength.bind(null, length));
+    const wordList = _dictionary.filter(filterByLength.bind(null, length));
 
     res.send({
       wordLength: length,
