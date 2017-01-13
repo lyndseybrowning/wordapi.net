@@ -1,15 +1,14 @@
 import fs from 'fs';
 
-function initRoute(app, callback, route) {
+function initRoute(app, route) {
   require(`./${route}`)(app);
-  return callback(app);
 }
 
 function filterRoutes(filename) {
   return filename[0] === '_';
 }
 
-function initInvalidRoutes(app) {
+function initCatchAllRoute(app) {
   app.get('/api/*', (req, res, next) => {
     res.send({
       status: 404,
@@ -20,11 +19,12 @@ function initInvalidRoutes(app) {
 
 const routes = {
   init(app, callback) {
-    fs.readdir(__dirname, (err, files) => {
-      files
-        .filter(filterRoutes)
-        .forEach(initRoute.bind(null, app, initInvalidRoutes));
-    });
+    const routeFiles = fs.readdirSync(__dirname);
+    routeFiles
+      .filter(filterRoutes)
+      .forEach(initRoute.bind(null, app));
+
+    initCatchAllRoute(app);
   }
 };
 
