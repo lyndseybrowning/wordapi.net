@@ -17,7 +17,7 @@ const dictionary = {
         return callback(err);
       }
 
-      const words = dict.split('\n');
+      const words = dict.split('\r\n');
       const wordList = trie.init(words);
 
       _dictionary = words;
