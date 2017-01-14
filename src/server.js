@@ -12,6 +12,7 @@ const server = {
     app.server = http.createServer(app);
     app.use('/', express.static(`${__dirname}/public`));
     app.use(errorHandler);
+    app.set('json spaces', 2);
     app.server.listen(port);
     routes.init(app);
   }
