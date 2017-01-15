@@ -7,6 +7,16 @@ function filterByLength(length, word) {
   return word.length === length;
 }
 
+function filterByPrefix(prefix, word) {
+  const prefixLen = prefix.length;
+  return word.length >= prefixLen && word.substring(0, prefixLen) === prefix.toUpperCase();
+}
+
+function filterBySuffix(suffix, word) {
+  const wordLen = word.length;
+  return word.substring(wordLen - suffix.length, wordLen) === suffix.toUpperCase();
+}
+
 const lists = (app) => {
   app.get('/api/lists', (req, res) => {
     const length = req.query.length;
@@ -26,7 +36,18 @@ const lists = (app) => {
       });
     }
 
-    const wordList = _dictionary.filter(filterByLength.bind(null, parseInt(length, 10)));
+    let wordList = _dictionary;
+    if(req.query.suffix) {
+      wordList = wordList.filter(filterBySuffix.bind(null, suffix));
+    }
+
+    if(req.query.prefix) {
+      wordList = wordList.filter(filterByPrefix.bind(null, prefix));
+    }
+
+    if(req.query.length) {
+      wordList = wordList.filter(filterByLength.bind(null, parseInt(length, 10)));
+    }
 
     res.send({
       wordsFound: wordList.length,
