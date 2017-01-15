@@ -18,6 +18,16 @@ function addWord(word) {
   });
 }
 
+function getPosition(word, trie) {
+  let node = trie;
+
+  word.split('').forEach(letter => {
+    node = node[letter];
+  });
+
+  return node;
+}
+
 const trie = {
   init(arrayOfWords) {
     arrayOfWords.forEach(addWord);
@@ -59,6 +69,23 @@ const trie = {
       node = node[entry];
       return true;
     });
+  },
+
+  filterByPrefix(prefix, trie = _trie) {
+    const wordList = [];
+    prefix = prefix.toLowerCase();
+
+    if(!this.isPrefix(prefix)) {
+      return [];
+    }
+
+    const startPoint = getPosition(prefix, trie);
+
+    if(startPoint.$ === 1) {
+      wordList.push(prefix);
+    }
+
+    return wordList;
   }
 };
 
