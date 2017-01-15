@@ -32,6 +32,7 @@ const lists = (app) => {
 
     if(errors) {
       return res.send({
+        url: req.url,
         errors: errors
       });
     }
