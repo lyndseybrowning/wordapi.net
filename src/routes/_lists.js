@@ -9,12 +9,17 @@ function filterByLength(length, word) {
 
 function filterByPrefix(prefix, word) {
   const prefixLen = prefix.length;
-  return word.length >= prefixLen && word.substring(0, prefixLen) === prefix.toUpperCase();
+  const isValidWordLen = word.length >= prefixLen;
+  const isPrefix = word.substring(0, prefixLen) === prefix.toUpperCase();
+
+  return isValidWordLen && isPrefix;
 }
 
 function filterBySuffix(suffix, word) {
   const wordLen = word.length;
-  return word.substring(wordLen - suffix.length, wordLen) === suffix.toUpperCase();
+  const wordSuffix = word.substring(wordLen - suffix.length, wordLen);
+
+  return wordSuffix === suffix.toUpperCase();
 }
 
 const lists = (app) => {
