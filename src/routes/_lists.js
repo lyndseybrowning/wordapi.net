@@ -1,6 +1,7 @@
 import trie from '../trie';
 import dictionary from '../dictionary';
 
+const _trie = trie.get();
 const _dictionary = dictionary.get();
 
 function filterByLength(length, word) {
@@ -43,12 +44,13 @@ const lists = (app) => {
     }
 
     let wordList = _dictionary;
-    if(req.query.suffix) {
-      wordList = wordList.filter(filterBySuffix.bind(null, suffix));
-    }
 
     if(req.query.prefix) {
-      wordList = wordList.filter(filterByPrefix.bind(null, prefix));
+      wordList = trie.filterByPrefix(prefix);
+    }
+
+    if(req.query.suffix) {
+      wordList = wordList.filter(filterBySuffix.bind(null, suffix));
     }
 
     if(req.query.length) {
