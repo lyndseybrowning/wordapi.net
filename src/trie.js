@@ -18,14 +18,27 @@ function addWord(word) {
   });
 }
 
-function getPosition(word, trie) {
-  let node = trie;
+function getPrefix(word) {
+  let node = _trie;
 
   word.split('').forEach(letter => {
     node = node[letter];
   });
 
   return node;
+}
+
+function recursePrefix(prefix, node, wordList = []) {
+  let word = prefix;
+  for(let n in node) {
+    if(n === '$') {
+      wordList.push(word.toUpperCase());
+      word = '';
+    } else {
+      recursePrefix(prefix + n, node[n], wordList);
+    }
+  }
+  return wordList;
 }
 
 const trie = {
@@ -72,20 +85,15 @@ const trie = {
   },
 
   filterByPrefix(prefix, trie = _trie) {
-    const wordList = [];
     prefix = prefix.toLowerCase();
 
     if(!this.isPrefix(prefix)) {
       return [];
     }
 
-    const startPoint = getPosition(prefix, trie);
+    const node = getPrefix(prefix);
 
-    if(startPoint.$ === 1) {
-      wordList.push(prefix);
-    }
-
-    return wordList;
+    return recursePrefix(prefix, node);
   }
 };
 
