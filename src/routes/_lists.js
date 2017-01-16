@@ -23,7 +23,7 @@ function filterBySuffix(suffix, word) {
 }
 
 const lists = (app) => {
-  app.get('/api/lists', (req, res) => {
+  app.get('/api/list', (req, res) => {
     const length = req.query.length;
     const prefix = req.query.prefix;
     const suffix = req.query.suffix;
