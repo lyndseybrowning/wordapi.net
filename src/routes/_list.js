@@ -3,7 +3,7 @@ import dictionary from '../dictionary';
 
 let wordList = dictionary.get();
 
-const lists = (app) => {
+const list = (app) => {
   app.get('/api/list', (req, res) => {
     const length = req.query.length;
     const prefix = req.query.prefix;
@@ -42,4 +42,4 @@ const lists = (app) => {
   });
 }
 
-module.exports = lists;
+module.exports = list;
