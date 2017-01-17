@@ -28,8 +28,24 @@ const dictionary = {
       return wordList;
     });
   },
+
   get() {
     return _dictionary;
+  },
+
+  filterByLength(length, dictionary = _dictionary) {
+    length = parseInt(length, 10);
+
+    const wordList = [];
+
+    for (let i = 0, len = dictionary.length; i < len; i++) {
+      let word = dictionary[i];
+
+      if(word.length === length) {
+        wordList.push(word);
+      }
+    }
+    return wordList;
   }
 }
 
