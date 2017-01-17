@@ -1,27 +1,7 @@
 import trie from '../trie';
 import dictionary from '../dictionary';
 
-const _trie = trie.get();
-const _dictionary = dictionary.get();
-
-function filterByLength(length, word) {
-  return word.length === length;
-}
-
-function filterByPrefix(prefix, word) {
-  const prefixLen = prefix.length;
-  const isValidWordLen = word.length >= prefixLen;
-  const isPrefix = word.substring(0, prefixLen) === prefix.toUpperCase();
-
-  return isValidWordLen && isPrefix;
-}
-
-function filterBySuffix(suffix, word) {
-  const wordLen = word.length;
-  const wordSuffix = word.substring(wordLen - suffix.length, wordLen);
-
-  return wordSuffix === suffix.toUpperCase();
-}
+let wordList = dictionary.get();
 
 const lists = (app) => {
   app.get('/api/list', (req, res) => {
@@ -43,18 +23,16 @@ const lists = (app) => {
       });
     }
 
-    let wordList = _dictionary;
-
     if(req.query.prefix) {
-      wordList = trie.filterByPrefix(prefix);
-    }
-
-    if(req.query.suffix) {
-      wordList = wordList.filter(filterBySuffix.bind(null, suffix));
+      wordList = trie.getPrefixArray(prefix);
     }
 
     if(req.query.length) {
-      wordList = wordList.filter(filterByLength.bind(null, parseInt(length, 10)));
+      wordList = dictionary.filterByLength(length, wordList);
+    }
+
+    if(req.query.suffix) {
+      wordList = dictionary.filterBySuffix(suffix, wordList);
     }
 
     res.send({
