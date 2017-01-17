@@ -30,6 +30,7 @@ function getPrefix(word) {
 
 function recursePrefix(prefix, node, wordList = []) {
   let word = prefix;
+
   for(let n in node) {
     if(n === '$') {
       wordList.push(word.toUpperCase());
@@ -38,6 +39,19 @@ function recursePrefix(prefix, node, wordList = []) {
       recursePrefix(prefix + n, node[n], wordList);
     }
   }
+
+  return wordList;
+}
+
+function recurseSuffix(suffix, node, wordList = [], word = '') {
+  for(let n in node) {
+    if(n === '$' && word.slice(-suffix.length) === suffix) {
+      wordList.push(word.toUpperCase());
+    } else {
+       recurseSuffix(suffix, node[n], wordList, word + n);
+    }
+  }
+
   return wordList;
 }
 
@@ -84,7 +98,11 @@ const trie = {
     });
   },
 
-  filterByPrefix(prefix, trie = _trie) {
+  getLengthArray(length, trie = _trie) {
+    return [];
+  },
+
+  getPrefixArray(prefix, trie = _trie) {
     prefix = prefix.toLowerCase();
 
     if(!this.isPrefix(prefix)) {
@@ -94,6 +112,12 @@ const trie = {
     const node = getPrefix(prefix);
 
     return recursePrefix(prefix, node);
+  },
+
+  getSuffixArray(suffix, trie = _trie) {
+    suffix = suffix.toLowerCase();
+
+    return recurseSuffix(suffix, trie);
   }
 };
 
