@@ -46,6 +46,21 @@ const dictionary = {
       }
     }
     return wordList;
+  },
+
+  filterBySuffix(suffix, dictionary = _dictionary) {
+    const wordList = [];
+
+    for (let i = 0, len = dictionary.length; i < len; i++) {
+      let word = dictionary[i];
+      let wordLen = word.length;
+      let wordSuffix = word.substring(wordLen - suffix.length, wordLen);
+
+      if(wordSuffix === suffix.toUpperCase()) {
+        wordList.push(word);
+      }
+    }
+    return wordList;
   }
 }
 
