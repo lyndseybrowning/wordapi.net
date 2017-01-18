@@ -1,4 +1,14 @@
-# Dictionary API
+# Word API
+
+This is an API that allows the retrieval of word lists based on parameters such as:
+
+- Length
+- Prefix
+- Suffix
+
+In the future, the API will solve anagrams, sub-anagrams and boggle-style matrices.
+
+It currently uses the [SOWPODS](https://en.wikipedia.org/wiki/Collins_Scrabble_Words) dictionary. The dictionary currently holds approximately 270,000 words.
 
 API Requirements:
 
