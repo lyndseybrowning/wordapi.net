@@ -1,14 +1,20 @@
 # Word API
 
-This is an API that allows the retrieval of word lists based on parameters such as:
+This API allows you (The User!) to fish out those words at the tip of your tongue using the following parameters:
 
-- Length
-- Prefix
-- Suffix
+Fish for words based on Letter Length
+Fish for words using Prefixes
+Fish for words using Suffixes
 
-In the future, the API will solve anagrams, sub-anagrams and boggle-style matrices.
+But this is only the beginning! 
 
-It currently uses the [SOWPODS](https://en.wikipedia.org/wiki/Collins_Scrabble_Words) dictionary. The dictionary currently holds approximately 270,000 words.
+Sometime, maybe in the near-future, this API will help you solve Anagrams, Sub-Anagrams and Boggle Style Matrices.
+
+The words fished for in this API all stem from the SOWPODS dictionary. That's £270,000 words to find!
+
+What are you waiting for?
+
+GO FISH!
 
 API Requirements:
 
