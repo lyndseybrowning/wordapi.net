@@ -10,7 +10,7 @@ But this is only the beginning!
 
 Sometime, maybe in the near-future, this API will help you solve Anagrams, Sub-Anagrams and Boggle Style Matrices.
 
-The words fished for in this API all stem from the SOWPODS dictionary. That's £270,000 words to find!
+The words fished for in this API all stem from the SOWPODS dictionary. That's **270,000** words to find!
 
 What are you waiting for?
 
