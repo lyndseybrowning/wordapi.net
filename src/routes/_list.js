@@ -19,7 +19,7 @@ const list = (app) => {
     if(errors) {
       return res.send({
         url: req.url,
-        errors: errors
+        errors
       });
     }
 
