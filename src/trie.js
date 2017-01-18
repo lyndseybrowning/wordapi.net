@@ -1,4 +1,4 @@
-let _trie = {};
+const _trie = {};
 
 function addWord(word) {
   if(word === '') {
@@ -31,7 +31,7 @@ function getPrefix(word) {
 function recursePrefix(prefix, node, wordList = []) {
   let word = prefix;
 
-  for(let n in node) {
+  for(const n in node) {
     if(n === '$') {
       wordList.push(word.toUpperCase());
       word = '';
@@ -44,7 +44,7 @@ function recursePrefix(prefix, node, wordList = []) {
 }
 
 function recurseSuffix(suffix, node, wordList = [], word = '') {
-  for(let n in node) {
+  for(const n in node) {
     if(n === '$' && word.slice(-suffix.length) === suffix) {
       wordList.push(word.toUpperCase());
     } else {
