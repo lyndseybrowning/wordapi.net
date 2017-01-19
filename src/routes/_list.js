@@ -24,7 +24,7 @@ const list = (app) => {
     let wordList = dictionary.get();
 
     if(req.query.prefix) {
-      wordList = trie.getPrefixArray(prefix);
+      wordList = trie.getPrefixArray(prefix.toLowerCase());
     }
 
     if(req.query.length) {

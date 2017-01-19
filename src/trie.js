@@ -1,13 +1,13 @@
 const _trie = {};
 
-const addWord = (word) => {
+const addWord = (wordToAdd) => {
+  const word = wordToAdd.replace(/\r/g, '');
+  let node = _trie || {};
+
   if(word === '') {
     return null;
   }
 
-  word = word.replace(/\r/g, '');
-
-  let node = _trie;
   word.toLowerCase().split('').forEach((letter, index) => {
     node[letter] = node[letter] || {};
     node = node[letter];
@@ -16,10 +16,19 @@ const addWord = (word) => {
       node.$ = 1;
     }
   });
+
+  return true;
 };
 
-const getPrefix = (prefix, node = _trie) => {
-  return prefix.split('').reduce((acc, letter) => (acc = acc[letter]), node);
+// reduces the Trie to the prefix branch
+const getPrefix = (branch, node = _trie) => {
+  const prefix = branch;
+  return prefix.split('').reduce((acc, letter) => {
+    let accumulator = Object.assign({}, acc);
+    accumulator = accumulator[letter];
+
+    return accumulator;
+  }, node);
 };
 
 const recursePrefix = (prefix, node, wordList = []) => {
@@ -79,8 +88,8 @@ const trie = {
     });
   },
 
-  isPrefix(prefix, trie = _trie) {
-    let node = trie;
+  isPrefix(prefix, trie) {
+    let node = trie || _trie;
 
     return prefix.split('').every(entry => {
       if(!node[entry]) {
@@ -97,8 +106,6 @@ const trie = {
   },
 
   getPrefixArray(prefix, trie = _trie) {
-    prefix = prefix.toLowerCase();
-
     if(!this.isPrefix(prefix)) {
       return [];
     }
@@ -108,7 +115,6 @@ const trie = {
   },
 
   getSuffixArray(suffix, trie = _trie) {
-    suffix = suffix.toLowerCase();
     return recurseSuffix(suffix, trie);
   }
 };

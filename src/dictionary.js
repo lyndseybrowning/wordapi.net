@@ -18,14 +18,13 @@ const dictionary = {
       }
 
       const words = dict.split('\r\n');
-      const wordList = trie.init(words);
 
       _dictionary = words;
+      trie.init(words);
 
       if(callback && typeof callback === 'function') {
-        return callback(null, wordList);
+        return callback(null);
       }
-      return wordList;
     });
   },
 
