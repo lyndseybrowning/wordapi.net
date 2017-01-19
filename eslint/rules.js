@@ -1,7 +1,9 @@
 module.exports = {
   "rules": {
     // always return from array method callbacks
-    "array-callback-return": 2,
+    "array-callback-return": 2,  
+    // require () around arrow function with more than one argument
+    "arrow-parens": [2, "as-needed"],
     // use variables within the scope they are defined
     "block-scoped-var": 2,
     // prefer === vs ==
@@ -31,7 +33,7 @@ module.exports = {
     "no-var": 2,
     // prefer object() shorthand function declarations
     "object-shorthand": 2,
-
+    "prefer-arrow-callback": 2,
     "prefer-const": 2,
     // prefer rest params vs arguments object
     "prefer-rest-params": 2,
