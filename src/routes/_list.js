@@ -1,8 +1,6 @@
 import trie from '../trie';
 import dictionary from '../dictionary';
 
-let wordList = dictionary.get();
-
 const list = (app) => {
   app.get('/api/list', (req, res) => {
     const length = req.query.length;
@@ -23,6 +21,8 @@ const list = (app) => {
       });
     }
 
+    let wordList = dictionary.get();
+
     if(req.query.prefix) {
       wordList = trie.getPrefixArray(prefix);
     }
@@ -32,7 +32,7 @@ const list = (app) => {
     }
 
     if(req.query.suffix) {
-      wordList = dictionary.filterBySuffix(suffix, wordList);
+      wordList = dictionary.filterBySuffix(suffix.toUpperCase(), wordList);
     }
 
     res.send({

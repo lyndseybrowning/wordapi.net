@@ -51,8 +51,6 @@ const dictionary = {
     const wordList = [];
     const suffixLen = suffix.length;
 
-    suffix = suffix.toUpperCase();
-
     for (let i = 0, len = dictionary.length; i < len; i++) {
       const word = dictionary[i];
       const wordLen = word.length;
