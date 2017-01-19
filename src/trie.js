@@ -35,7 +35,7 @@ function recursePrefix(prefix, node, wordList = []) {
     if(n === '$') {
       wordList.push(word.toUpperCase());
       word = '';
-      continue
+      continue;
     }
     recursePrefix(prefix + n, node[n], wordList);
   }
