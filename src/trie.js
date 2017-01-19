@@ -1,6 +1,6 @@
 const _trie = {};
 
-function addWord(word) {
+const addWord = (word) => {
   if(word === '') {
     return null;
   }
@@ -16,19 +16,13 @@ function addWord(word) {
       node.$ = 1;
     }
   });
-}
+};
 
-function getPrefix(word) {
-  let node = _trie;
+const getPrefix = (prefix, node = _trie) => {
+  return prefix.split('').reduce((acc, letter) => (acc = acc[letter]), node);
+};
 
-  word.split('').forEach(letter => {
-    node = node[letter];
-  });
-
-  return node;
-}
-
-function recursePrefix(prefix, node, wordList = []) {
+const recursePrefix = (prefix, node, wordList = []) => {
   let word = prefix;
 
   for(const n in node) {
@@ -41,9 +35,9 @@ function recursePrefix(prefix, node, wordList = []) {
   }
 
   return wordList;
-}
+};
 
-function recurseSuffix(suffix, node, wordList = [], word = '') {
+const recurseSuffix = (suffix, node, wordList = [], word = '') => {
   for(const n in node) {
     if(n === '$' && word.slice(-suffix.length) === suffix) {
       wordList.push(word.toUpperCase());
