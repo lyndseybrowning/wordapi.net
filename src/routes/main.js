@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const filterRoutes = (filename) => {
+const filterRoutes = filename => {
   return filename[0] === '_';
 };
 
@@ -12,7 +12,7 @@ const initRoute = (app, route) => {
   }
 };
 
-const initCatchAllRoute = (app) => {
+const initCatchAllRoute = app => {
   app.get('/api/*', (req, res, next) => {
     res.send({
       status: 404,

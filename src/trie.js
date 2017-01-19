@@ -1,6 +1,6 @@
 const _trie = {};
 
-const addWord = (wordToAdd) => {
+const addWord = wordToAdd => {
   const word = wordToAdd.replace(/\r/g, '');
   let node = _trie || {};
 

@@ -1,7 +1,7 @@
 import trie from '../trie';
 import dictionary from '../dictionary';
 
-const list = (app) => {
+const list = app => {
   app.get('/api/list', (req, res) => {
     const length = req.query.length;
     const prefix = req.query.prefix;
