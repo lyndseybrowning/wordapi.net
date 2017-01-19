@@ -28,7 +28,7 @@ const list = (app) => {
     }
 
     if(req.query.length) {
-      wordList = dictionary.filterByLength(length, wordList);
+      wordList = dictionary.filterByLength(Number(length), wordList);
     }
 
     if(req.query.suffix) {

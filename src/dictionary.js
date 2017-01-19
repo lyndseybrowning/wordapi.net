@@ -35,13 +35,12 @@ const dictionary = {
 
   filterByLength(length, dictionary = _dictionary) {
     const wordList = [];
-    length = parseInt(length, 10);   
 
     for (let i = 0, len = dictionary.length; i < len; i++) {
       const word = dictionary[i];
 
       if(word.length !== length) {
-        continue;        
+        continue;
       }
       wordList.push(word);
     }
@@ -51,7 +50,7 @@ const dictionary = {
   filterBySuffix(suffix, dictionary = _dictionary) {
     const wordList = [];
     const suffixLen = suffix.length;
-    
+
     suffix = suffix.toUpperCase();
 
     for (let i = 0, len = dictionary.length; i < len; i++) {
@@ -60,9 +59,9 @@ const dictionary = {
       const wordSuffix = word.substring(wordLen - suffixLen, wordLen);
 
       if(wordSuffix !== suffix) {
-        continue;    	
+        continue;
       }
-      wordList.push(word);    
+      wordList.push(word);
     }
     return wordList;
   }
