@@ -1,25 +1,25 @@
 import fs from 'fs';
 
-function initRoute(app, route) {
+const filterRoutes = (filename) => {
+  return filename[0] === '_';
+};
+
+const initRoute = (app, route) => {
   const _route = require(`./${route}`);
 
   if(typeof _route === 'function') {
     _route(app);
   }
-}
+};
 
-function filterRoutes(filename) {
-  return filename[0] === '_';
-}
-
-function initCatchAllRoute(app) {
+const initCatchAllRoute = (app) => {
   app.get('/api/*', (req, res, next) => {
     res.send({
       status: 404,
       message: `Invalid URL requested: ${req.url}`
     });
   });
-}
+};
 
 const routes = {
   init(app, callback) {
