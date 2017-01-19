@@ -6,7 +6,8 @@
     "ecmaVersion": 2017,
     "sourceType": "module",
     "ecmaFeatures": {
-      "impliedStrict": 1
+      "impliedStrict": 1,
+      "experimentalObjectRestSpread": true
     }
   },
   "extends": "./eslint/rules.js"
