@@ -116,7 +116,7 @@ const trie = {
 
   getSuffixArray(suffix, trie = _trie) {
     return recurseSuffix(suffix, trie);
-  }
+  },
 };
 
 export default trie;

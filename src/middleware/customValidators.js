@@ -3,7 +3,7 @@ const customValidators = {
     const filter = params.filter(param => (typeof param !== 'undefined'));
 
     return filter.length > 0;
-  }
+  },
 }
 
 export default customValidators;

@@ -20,7 +20,7 @@ const list = app => {
     if(errors) {
       return res.send({
         url: req.url,
-        errors
+        errors,
       });
     }
 
@@ -40,7 +40,7 @@ const list = app => {
 
     res.send({
       wordsFound: wordList.length,
-      wordList
+      wordList,
     });
   });
 }

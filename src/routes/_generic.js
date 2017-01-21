@@ -7,7 +7,7 @@ const generics = app => {
 
     res.send({
       word,
-      valid
+      valid,
     });
   });
 }

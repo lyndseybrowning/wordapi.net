@@ -61,7 +61,7 @@ const dictionary = {
       wordList.push(word);
     }
     return wordList;
-  }
+  },
 }
 
 export default dictionary;

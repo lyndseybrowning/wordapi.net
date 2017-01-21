@@ -16,7 +16,7 @@ const initCatchAllRoute = app => {
   app.get('/api/*', (req, res, next) => {
     res.send({
       status: 404,
-      message: `Invalid URL requested: ${req.url}`
+      message: `Invalid URL requested: ${req.url}`,
     });
   });
 };
@@ -29,7 +29,7 @@ const routes = {
       .forEach(initRoute.bind(null, app));
 
     initCatchAllRoute(app);
-  }
+  },
 };
 
 export default routes;
