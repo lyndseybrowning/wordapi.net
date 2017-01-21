@@ -3,7 +3,7 @@ import fs from 'fs';
 import config from './config';
 import trie from './trie';
 
-let _dictionary = []; // stores txt file as array
+let fullDictionary = []; // stores txt file as array
 
 const file = path.join(__dirname, config.dictionary.sowpods);
 const dictionary = {
@@ -19,7 +19,7 @@ const dictionary = {
 
       const words = dict.split('\r\n');
 
-      _dictionary = words;
+      fullDictionary = words;
       trie.init(words);
 
       if(callback && typeof callback === 'function') {
@@ -29,10 +29,10 @@ const dictionary = {
   },
 
   get() {
-    return _dictionary;
+    return fullDictionary;
   },
 
-  filterByLength(length, dictionary = _dictionary) {
+  filterByLength(length, dictionary = fullDictionary) {
     const wordList = [];
 
     for(let i = 0, len = dictionary.length; i < len; i++) {
@@ -46,7 +46,7 @@ const dictionary = {
     return wordList;
   },
 
-  filterBySuffix(suffix, dictionary = _dictionary) {
+  filterBySuffix(suffix, dictionary = fullDictionary) {
     const wordList = [];
     const suffixLen = suffix.length;
 
