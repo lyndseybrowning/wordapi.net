@@ -1,6 +1,6 @@
 const _trie = {};
 
-const addWord = wordToAdd => {
+const addWord = (wordToAdd) => {
   const word = wordToAdd.replace(/\r/g, '');
   let node = _trie || {};
 
@@ -91,7 +91,7 @@ const trie = {
   isPrefix(prefix, trie) {
     let node = trie || _trie;
 
-    return prefix.split('').every(entry => {
+    return prefix.split('').every((entry) => {
       if(!node[entry]) {
         return false;
       }
