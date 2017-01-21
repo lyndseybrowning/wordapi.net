@@ -43,6 +43,6 @@ const list = app => {
       wordList,
     });
   });
-}
+};
 
 module.exports = list;

@@ -62,6 +62,6 @@ const dictionary = {
     }
     return wordList;
   },
-}
+};
 
 export default dictionary;

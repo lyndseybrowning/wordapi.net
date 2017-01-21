@@ -4,6 +4,6 @@ const customValidators = {
 
     return filter.length > 0;
   },
-}
+};
 
 export default customValidators;

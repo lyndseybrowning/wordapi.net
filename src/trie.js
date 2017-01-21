@@ -56,7 +56,7 @@ const recurseSuffix = (suffix, node, wordList = [], word = '') => {
   }
 
   return wordList;
-}
+};
 
 const trie = {
   init(arrayOfWords) {

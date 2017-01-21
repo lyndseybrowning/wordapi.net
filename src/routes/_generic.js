@@ -10,6 +10,6 @@ const generics = app => {
       valid,
     });
   });
-}
+};
 
 module.exports = generics;

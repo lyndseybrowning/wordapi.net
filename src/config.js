@@ -3,4 +3,4 @@ export default {
   dictionary: {
     sowpods: 'dict/sowpods.txt',
   },
-}
+};
