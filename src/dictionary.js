@@ -35,7 +35,7 @@ const dictionary = {
   filterByLength(length, dictionary = _dictionary) {
     const wordList = [];
 
-    for (let i = 0, len = dictionary.length; i < len; i++) {
+    for(let i = 0, len = dictionary.length; i < len; i++) {
       const word = dictionary[i];
 
       if(word.length !== length) {
@@ -50,7 +50,7 @@ const dictionary = {
     const wordList = [];
     const suffixLen = suffix.length;
 
-    for (let i = 0, len = dictionary.length; i < len; i++) {
+    for(let i = 0, len = dictionary.length; i < len; i++) {
       const word = dictionary[i];
       const wordLen = word.length;
       const wordSuffix = word.substring(wordLen - suffixLen, wordLen);
