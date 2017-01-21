@@ -5,10 +5,10 @@ const filterRoutes = (filename) => {
 };
 
 const initRoute = (app, route) => {
-  const _route = require(`./${route}`);
+  const initRouteFile = require(`./${route}`);
 
-  if(typeof _route === 'function') {
-    _route(app);
+  if(typeof initRouteFile === 'function') {
+    initRouteFile(app);
   }
 };
 
