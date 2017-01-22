@@ -18,6 +18,8 @@ const server = {
     app.set('json spaces', 2);
     app.server.listen(port);
     routes.init(app);
+
+    return app;
   },
 };
 
