@@ -12,12 +12,8 @@ const dictionary = {
       return callback(`Dictionary.init(): file does not exist: ${file}`);
     }
 
-    fs.readFile(file, 'utf8', (err, dict) => {
-      if(err) {
-        return callback(err);
-      }
-
-      const words = dict.split('\r\n');
+    try {
+      const words = fs.readFileSync(file).toString().split('\r\n');
 
       fullDictionary = words;
       trie.init(words);
@@ -25,7 +21,10 @@ const dictionary = {
       if(callback && typeof callback === 'function') {
         return callback(null);
       }
-    });
+
+    } catch(err) {
+      return callback(err);
+    }
   },
 
   get() {
