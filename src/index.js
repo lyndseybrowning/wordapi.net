@@ -1,9 +1,9 @@
 import dictionary from './dictionary';
 import server from './server';
 
-dictionary.init((err) => {
+export default dictionary.init((err) => {
   if(err) {
     throw err;
   }
-  server.init();
+  return server.init();
 });
