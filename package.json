@@ -8,7 +8,7 @@
     "build": "babel src -s -D -d dist --presets es2015",
     "start": "NODE_ENV=production node dist",
     "lint": "eslint src",
-    "test": "NODE_ENV=test npm run lint && mocha --compilers js:babel-core/register"
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register"
   },
   "repository": {
     "type": "git",
