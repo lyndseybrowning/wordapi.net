@@ -14,7 +14,7 @@ const initRoute = (app, route) => {
 
 const initCatchAllRoute = (app) => {
   app.get('/api/*', (req, res, next) => {
-    res.send({
+    res.status(404).send({
       status: 404,
       message: `Invalid URL requested: ${req.url}`,
     });
