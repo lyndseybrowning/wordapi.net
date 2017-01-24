@@ -1,6 +1,6 @@
 import trie from '../trie';
 
-const generics = (app) => {
+const generic = (app) => {
   app.get('/api/valid/:word', (req, res) => {
     const word = req.params.word.toLowerCase();
     const valid = trie.contains(word);
@@ -12,4 +12,4 @@ const generics = (app) => {
   });
 };
 
-module.exports = generics;
+module.exports = generic;
