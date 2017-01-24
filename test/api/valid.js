@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { expect } from 'chai';
-import app from '../src/index';
+import app from '../../src/index';
 
 describe('GET /api/valid/:word', () => {
   it('should return a 404 status when no word is passed', (done) => {
