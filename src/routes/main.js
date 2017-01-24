@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 const filterRoutes = (filename) => {
-  return filename[0] === '_';
+  return filename.split('.')[0] === 'route';
 };
 
 const initRoute = (app, route) => {
