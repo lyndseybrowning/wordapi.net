@@ -1,4 +1,5 @@
 import fs from 'fs';
+import catchAll from './route.catchall';
 
 const filterRoutes = (filename) => {
   return filename.split('.')[0] === 'route';
@@ -12,15 +13,6 @@ const initRoute = (app, route) => {
   }
 };
 
-const initCatchAllRoute = (app) => {
-  app.get('/api/*', (req, res, next) => {
-    res.status(404).send({
-      status: 404,
-      message: `Invalid URL requested: ${req.url}`,
-    });
-  });
-};
-
 const routes = {
   init(app, callback) {
     const routeFiles = fs.readdirSync(__dirname);
@@ -28,7 +20,7 @@ const routes = {
       .filter(filterRoutes)
       .forEach(initRoute.bind(null, app));
 
-    initCatchAllRoute(app);
+    catchAll(app);
   },
 };
 
