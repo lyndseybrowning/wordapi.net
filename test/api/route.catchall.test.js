@@ -1,5 +1,5 @@
 module.exports = function(request, expect, app) {
-  describe('invalid API route requested', () => {
+  describe('invalid route request', () => {
     it('should return a 404 status when an invalid route is requested', (done) => {
       request(app)
         .get('/api/random/')
