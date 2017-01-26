@@ -16,7 +16,7 @@ const server = {
     app.use(errorHandler);
     app.use(expressValidator({ customValidators }));
     app.set('json spaces', 2);
-    if(!module.parent) {
+    if(config.env !== 'test') {
       app.server.listen(port);
     }
     routes.init(app);
