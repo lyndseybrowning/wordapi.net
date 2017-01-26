@@ -18,7 +18,7 @@ const list = (app) => {
     const errors = req.validationErrors();
 
     if(errors) {
-      return res.send({
+      return res.status(500).send({
         url: req.url,
         errors,
       });
