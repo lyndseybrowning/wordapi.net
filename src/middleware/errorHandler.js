@@ -1,4 +1,5 @@
-const dev = process.node_env === 'development';
+const dev = process.env.NODE_ENV === 'development';
+
 const errorHandler = (err, req, res, next) => {
   const handler = {
     message: err.message,
