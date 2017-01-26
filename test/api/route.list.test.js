@@ -6,14 +6,14 @@ module.exports = function(request, expect, app) {
           .expect(500, done);
       });
 
-      it('should respond with json', (done) => {
+      it('should respond with JSON', (done) => {
         request(app)
           .get('/api/list?length=4')
           .expect('Content-Type', /json/)
           .expect(200, done);
       });
 
-      it('should return a word list and the number of words found', (done) => {
+      it('should return an object with properties: wordsFound and wordList', (done) => {
         request(app)
           .get('/api/list?length=4')
           .expect(200)
@@ -27,7 +27,21 @@ module.exports = function(request, expect, app) {
           });
       });
 
-      it('should return the words found in array format', (done) => {
+      it('should return the number of words found as a Number', (done) => {
+        request(app)
+          .get('/api/list?length=4&prefix=tree')
+          .expect(200)
+          .end((err, res) => {
+            if(err) {
+              throw(err);
+            }
+            expect(res.body.wordsFound).to.be.a('number');
+            done();
+          });
+      });
+
+
+      it('should return the words found as an Array', (done) => {
         request(app)
           .get('/api/list?length=4&prefix=tree')
           .expect(200)
