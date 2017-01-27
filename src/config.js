@@ -3,5 +3,5 @@ export default {
   dictionary: {
     sowpods: 'dict/sowpods.txt',
   },
-  env: process.env.NODE_ENV
+  env: process.env.NODE_ENV,
 };
