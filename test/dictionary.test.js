@@ -2,21 +2,16 @@ import dictionary from '../src/dictionary';
 
 describe('Dictionary', () => {
 	describe('init()', () => {
+    it('should create the dictionary from a txt file');
+    it('should create the dictionary only once');
   	it('should return an array');
     it('should not return an empty array');
-    it('should create the dictionary only once');
-  });
-
-  describe('create()', () => {
-    it('should read a .txt file into an array');
-    it('should return an array');
   });
 
   describe('get()', () => {
     it('should create an instance of the dictionary if it is empty');
     it('should return an instance of the dictionary created by init()');
   });
-
 
   describe('filterByLength()', () => {
     it('should not modify the global dictionary array');
