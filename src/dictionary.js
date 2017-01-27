@@ -1,66 +1,35 @@
 import path from 'path';
 import fs from 'fs';
 import config from './config';
-import trie from './trie';
 
-let fullDictionary = []; // stores txt file as array
+const dictionary = function() {
+  const words = [];
 
-const file = path.join(__dirname, config.dictionary.sowpods);
-const dictionary = {
-  init(callback) {
-    if(!fs.existsSync(file)) {
-      return callback(`Dictionary.init(): file does not exist: ${file}`);
-    }
-
-    try {
-      const words = fs.readFileSync(file).toString().split('\r\n');
-
-      fullDictionary = words;
-      trie.init(words);
-
-      if(callback && typeof callback === 'function') {
-        return callback(null);
+  return {
+    init() {
+      if(words.length) {
+        return words;
       }
 
-    } catch(err) {
-      return callback(err);
-    }
-  },
+      const file = path.join(__dirname, config.dictionary.sowpods);
+      const array = fs.readFileSync(file).toString().split('\r\n');
 
-  get() {
-    return fullDictionary;
-  },
+      return array;
+    },
 
-  filterByLength(length, dictionary = fullDictionary) {
-    const wordList = [];
-
-    for(let i = 0, len = dictionary.length; i < len; i++) {
-      const word = dictionary[i];
-
-      if(word.length !== length) {
-        continue;
+    get() {
+      if(!words.length) {
+        return this.init();
       }
-      wordList.push(word);
-    }
-    return wordList;
-  },
 
-  filterBySuffix(suffix, dictionary = fullDictionary) {
-    const wordList = [];
-    const suffixLen = suffix.length;
+      return words;
+    },
 
-    for(let i = 0, len = dictionary.length; i < len; i++) {
-      const word = dictionary[i];
-      const wordLen = word.length;
-      const wordSuffix = word.substring(wordLen - suffixLen, wordLen);
-
-      if(wordSuffix !== suffix) {
-        continue;
-      }
-      wordList.push(word);
-    }
-    return wordList;
-  },
+    filterByLength(length, dictionary = words) {
+      return dictionary.filter(word => word.length === length);
+    },
+    
+  };
 };
 
-export default dictionary;
+export default dictionary();
