@@ -1,8 +1,15 @@
+import { expect } from 'chai';
 import dictionary from '../src/dictionary';
 
 describe('Dictionary', () => {
+  let words;
+
+  beforeEach((done) => {
+    words = dictionary.init();
+    done();
+  });
+
 	describe('init()', () => {
-    it('should create the dictionary only once');
   	it('should return an array');
     it('should not return an empty array');
   });
