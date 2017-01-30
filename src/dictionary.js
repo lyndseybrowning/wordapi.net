@@ -2,34 +2,30 @@ import path from 'path';
 import fs from 'fs';
 import config from './config';
 
-const dictionary = function() {
-  const words = [];
+export default (array) => {
+  if(!Array.isArray(array)) {
+    return 'The first argument must be an array';
+  }
 
   return {
-    init() {
-      if(words.length) {
-        return words;
+    filterByLength(length) {
+      if(typeof length !== 'number') {
+        return 'The first argument must be a number';
       }
 
-      const file = path.join(__dirname, config.dictionary.sowpods);
-      const array = fs.readFileSync(file).toString().split('\r\n');
-
-      return array;
+      return array.filter(word => word.length === length);
     },
 
-    get() {
-      if(!words.length) {
-        return this.init();
+    filterByPrefix(prefix) {
+      if(typeof prefix === 'undefined') {
+        return array;
       }
 
-      return words;
-    },
+      if(typeof prefix !== 'string') {
+        return 'The first argument must be a string';
+      }
 
-    filterByLength(length, dictionary = words) {
-      return dictionary.filter(word => word.length === length);
-    },
-    
+      return array.filter(word => word.substring(0, prefix.length) === prefix);
+    }
   };
-};
-
-export default dictionary();
+}
