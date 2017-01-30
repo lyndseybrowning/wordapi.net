@@ -58,4 +58,30 @@ describe('Dictionary', () => {
       expect(actual).to.deep.equal(expected);
     });
   });
+
+  describe('Filtering by suffix', () => {
+    const array = ['HELLO', 'WORLD', 'GO', 'JAVASCRIPT'];
+    const words = dictionary(array);
+
+    it('returns the whole dictionary when the suffix is undefined', () => {
+      const actual = words.filterBySuffix();
+      const expected = array;
+
+      expect(actual).to.equal(expected);
+    });
+
+    it('returns an error when the suffix is not a string', () => {
+      const actual = words.filterBySuffix(123);
+      const expected = 'The first argument must be a string';
+
+      expect(actual).to.equal(expected);
+    });
+
+    it('filters the dictionary by suffix and returns a new array', () => {
+      const actual = words.filterBySuffix('O');
+      const expected = ['HELLO', 'GO'];
+
+      expect(actual).to.deep.equal(expected);
+    });
+  });
 });
