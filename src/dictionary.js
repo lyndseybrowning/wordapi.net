@@ -26,6 +26,6 @@ export default (array) => {
       }
 
       return array.filter(word => word.substring(0, prefix.length) === prefix);
-    }
+    },
   };
-}
+};
