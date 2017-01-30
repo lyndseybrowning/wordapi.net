@@ -2,65 +2,60 @@ import { expect } from 'chai';
 import dictionary from '../src/dictionary';
 
 describe('Dictionary', () => {
-  let words;
-
-  beforeEach(() => {
-    words = dictionary.init();
+  it('returns an error message when the first argument is not an array', () => {
+    const actual = dictionary('abc');
+    const expected = 'The first argument must be an array';
+    expect(actual).to.equal(expected);
   });
 
-	describe('#init()', () => {
-    it('should return an array', () => {
-      expect(words).to.be.a('array');
-    });
-
-    it('should not return an empty array', () => {
-      expect(words.length).not.equal(0);
-    });
+  it('returns an object literal', () => {
+    const actual = dictionary(['CAT', 'DOG']);
+    const expected = 'object';
+    expect(actual).to.be.a(expected);
   });
 
-  describe('#get()', () => {
-    it('should return an array', () => {
-      expect(dictionary.get()).to.be.a('array');
+  describe('Filtering by length', () => {
+    const words = dictionary(['DOG', 'CAT', 'TIGER', 'LION', 'LEOPARD']);
+    const length = 3;
+
+    it('returns an error message when the first argument is not a number', () => {
+      const actual = words.filterByLength('abc');
+      const expected = 'The first argument must be a number';
+
+      expect(actual).to.equal(expected);
     });
 
-    it('should return an instance of the dictionary created by init()', () => {
-      expect(dictionary.get().length).to.equal(words.length);
-    });
-  });
+    it('filters the dictionary by length and returns a new array', () => {
+      const actual = words.filterByLength(length);
+      const expected = ['DOG', 'CAT'];
 
-  describe('#filterByLength()', () => {
-    it('should return an array', () => {
-      const actual = dictionary.filterByLength(10);
-
-      expect(actual).to.be.a('array');
-    });
-
-    it('should return an array of words filtered by length', () => {
-      const words = ['BOAT', 'CAR', 'BUS'];
-      const length = 3;
-      const expected = ['CAR', 'BUS'];
-      const actual = dictionary.filterByLength(length, words);
-
-      expect(expected).to.deep.equal(actual);
-    });
-
-    it('should not modify the global dictionary array', () => {
-      const filtered = dictionary.filterByLength(10);
-      const get = dictionary.get();
-
-      expect(get.length).to.equal(words.length);
+      expect(actual).to.deep.equal(expected);
     });
   });
 
-  describe('#filterByPrefix()', () => {
-    it('should not modify the global dictionary array');
-    it('should accept a parameter of type String');
-    it('should return an array of words that start with the requested prefix');
-  });
+  describe('Filtering by prefix', () => {
+    const array = ['CAR', 'CAMPER', 'TAXI', 'SAILBOAT', 'CARAVAN', 'PLANE'];
+    const words = dictionary(array);
 
-  describe('#filterBySuffix()', () => {
-    it('should not modify the global dictionary array');
-    it('should accept a parameter of type String');
-    it('should return an array of words that end with the requested suffix');
+    it('returns the whole dictionary when the prefix is undefined', () => {
+      const actual = words.filterByPrefix();
+      const expected = array;
+
+      expect(actual).to.deep.equal(expected);
+    });
+
+    it('returns an error when the prefix is not a string', () => {
+      const actual = words.filterByPrefix(123);
+      const expected = 'The first argument must be a string';
+
+      expect(actual).to.equal(expected);
+    });
+
+    it('filters the dictionary by prefix and returns a new array', () => {
+      const actual = words.filterByPrefix('CA');
+      const expected = ['CAR', 'CAMPER', 'CARAVAN'];
+
+      expect(actual).to.deep.equal(expected);
+    });
   });
 });
