@@ -7,7 +7,13 @@ export default (array) => {
     return 'The first argument must be an array';
   }
 
+  array = array.map(word => word.toLowerCase());
+
   return {
+    get() {
+      return array;
+    },
+
     filterByLength(length) {
       if(typeof length !== 'number') {
         return 'The first argument must be a number';
@@ -25,7 +31,7 @@ export default (array) => {
         return 'The first argument must be a string';
       }
 
-      return array.filter(word => word.substring(0, prefix.length) === prefix);
+      return array.filter(word => word.substring(0, prefix.length) === prefix.toLowerCase());
     },
 
     filterBySuffix(suffix) {
@@ -40,7 +46,7 @@ export default (array) => {
       return array.filter((word) => {
         const wordLen = word.length;
         const startAt = wordLen - suffix.length;
-        return word.substring(startAt, wordLen) === suffix;
+        return word.substring(startAt, wordLen) === suffix.toLowerCase();
       });
     },
   };
