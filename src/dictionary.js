@@ -1,7 +1,3 @@
-import path from 'path';
-import fs from 'fs';
-import config from './config';
-
 export default (array) => {
   if(!Array.isArray(array)) {
     return 'The first argument must be an array';
