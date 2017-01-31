@@ -8,23 +8,21 @@ describe('Dictionary', () => {
     expect(actual).to.equal(expected);
   });
 
+  it('expects an array in lowercase', () => {
+    const actual = dictionary(['WORD']);
+    const expected = 'The dictionary should be in lowercase';
+
+    expect(actual).to.equal(expected);
+  });
+
   it('returns an object literal', () => {
-    const actual = dictionary(['CAT', 'DOG']);
+    const actual = dictionary(['cat', 'dog']);
     const expected = 'object';
     expect(actual).to.be.a(expected);
   });
 
-  describe('Retrieving the full dictionary', () => {
-    it('should be returned in lowercase', () => {
-      const { get } = dictionary(['CAT', 'DOG']);
-      const expected = ['cat', 'dog'];
-
-      expect(get()).to.deep.equal(expected);
-    });
-  });
-
   describe('Filtering by length', () => {
-    const words = dictionary(['DOG', 'CAT', 'TIGER', 'LION', 'LEOPARD']);
+    const words = dictionary(['dog', 'cat', 'tiger', 'lion', 'leopard']);
     const length = 3;
 
     it('returns an error message when the first argument is not a number', () => {
