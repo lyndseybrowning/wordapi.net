@@ -53,5 +53,13 @@ export default (dictionary) => {
         return true;
       });
     },
+
+    filterPrefix(prefix) {
+      if(typeof prefix !== 'string') {
+        return 'The first argument must be a string';
+      }
+
+      return [];
+    },
   };
 };

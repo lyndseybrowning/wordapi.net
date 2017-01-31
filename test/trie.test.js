@@ -54,5 +54,23 @@ describe('Trie', () => {
         expect(contains('TIGER')).to.equal(true);
       });
     });
+
+    describe('filtering by prefix', () => {
+      const { filterPrefix } = trie(['dog', 'cat', 'car', 'sky', 'castle', 'friend']);
+
+      it('returns an error message when the first argument is not a string', () => {
+        const actual = filterPrefix(124);
+        const expected = 'The first argument must be a string';
+
+        expect(actual).to.equal(expected);
+      });
+
+      it('returns filtered words as an array', () => {
+        const actual = filterPrefix('d');
+        const expected = 'array';
+
+        expect(actual).to.be.a(expected);
+      });
+    });
   });
 });
