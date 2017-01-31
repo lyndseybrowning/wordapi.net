@@ -1,17 +1,17 @@
-import path from 'path';
-import fs from 'fs';
-import config from './config';
-
-export default (array) => {
-  if(!Array.isArray(array)) {
+export default (dictionary) => {
+  if(!Array.isArray(dictionary)) {
     return 'The first argument must be an array';
   }
 
-  array = array.map(word => word.toLowerCase());
+  const hasUpperCase = dictionary.some(word => word.toUpperCase() === word);
+
+  if(hasUpperCase) {
+    return 'The dictionary should be in lowercase';
+  }
 
   return {
     get() {
-      return array;
+      return dictionary;
     },
 
     filterByLength(length) {
@@ -19,31 +19,33 @@ export default (array) => {
         return 'The first argument must be a number';
       }
 
-      return array.filter(word => word.length === length);
+      return dictionary.filter(word => word.length === length);
     },
 
     filterByPrefix(prefix) {
       if(typeof prefix === 'undefined') {
-        return array;
+        return dictionary;
       }
 
       if(typeof prefix !== 'string') {
         return 'The first argument must be a string';
       }
 
-      return array.filter(word => word.substring(0, prefix.length) === prefix.toLowerCase());
+      return dictionary.filter((word) => {
+        return word.substring(0, prefix.length) === prefix.toLowerCase();
+      });
     },
 
     filterBySuffix(suffix) {
       if(typeof suffix === 'undefined') {
-        return array;
+        return dictionary;
       }
 
       if(typeof suffix !== 'string') {
         return 'The first argument must be a string';
       }
 
-      return array.filter((word) => {
+      return dictionary.filter((word) => {
         const wordLen = word.length;
         const startAt = wordLen - suffix.length;
         return word.substring(startAt, wordLen) === suffix.toLowerCase();
