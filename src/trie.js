@@ -30,5 +30,28 @@ export default (dictionary) => {
     get() {
       return trie;
     },
+
+    contains(word) {
+      if(typeof word !== 'string') {
+        return 'The first argument must be a string';
+      }
+
+      const letters = word.toLowerCase().split('');
+      let node = { ...trie };
+
+      return letters.every((letter, index) => {
+        if(!node[letter]) {
+          return false;
+        }
+
+        node = node[letter];
+
+        if(index === word.length - 1) {
+          return node.$ === 1;
+        }
+
+        return true;
+      });
+    },
   };
 };
