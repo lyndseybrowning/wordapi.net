@@ -19,6 +19,38 @@ const createTrie = function(dictionary) {
   }, {});
 };
 
+const getPrefix = function(prefix, trie) {
+  let node = { ...trie };
+
+  const hasPrefix = prefix.split('').every((letter) => {
+    if(!node[letter]) {
+      return false;
+    }
+    return node = node[letter];
+  });
+
+  if(!hasPrefix) {
+    return {};
+  }
+
+  return node;
+};
+
+const recursePrefix = function(prefix, prefixFromTrie, wordsFound = []) {
+  let currentWord = prefix;
+
+  for(const node in prefixFromTrie) {
+    if(node === '$') {
+      wordsFound.push(currentWord);
+      currentWord = '';
+      continue;
+    }
+    recursePrefix(prefix + node, prefixFromTrie[node], wordsFound);
+  }
+
+  return wordsFound;
+};
+
 export default (dictionary) => {
   if(!Array.isArray(dictionary)) {
     return 'The first argument must be an array';
@@ -59,7 +91,13 @@ export default (dictionary) => {
         return 'The first argument must be a string';
       }
 
-      return [];
+      const prefixFromTrie = getPrefix(prefix, trie);
+
+      if(Object.keys(prefixFromTrie).length === 0) {
+        return [];
+      }
+
+      return recursePrefix(prefix, prefixFromTrie);
     },
   };
 };

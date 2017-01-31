@@ -71,6 +71,17 @@ describe('Trie', () => {
 
         expect(actual).to.be.a(expected);
       });
+
+      it('returns an empty array when the prefix does not exist', () => {
+        expect(filterPrefix('z').length).to.equal(0);
+      });
+
+      it('filters the existing trie into an array of valid words', () => {
+       expect(filterPrefix('f')).to.deep.equal(['friend']);
+       expect(filterPrefix('x')).to.deep.equal([]);
+       expect(filterPrefix('cas')).to.deep.equal(['castle']);
+       expect(filterPrefix('ca')).to.deep.equal(['cat', 'car', 'castle']);
+      });
     });
   });
 });
