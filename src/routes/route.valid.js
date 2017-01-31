@@ -1,6 +1,9 @@
-import trie from '../trie';
+import utils from '../utils';
+import trieModule from '../trie';
 
-const generic = (app) => {
+const trie = trieModule(utils.getDictionary());
+
+module.exports = (app) => {
   app.get('/api/valid/:word', (req, res) => {
     const word = req.params.word.toLowerCase();
     const valid = trie.contains(word);
@@ -11,5 +14,3 @@ const generic = (app) => {
     });
   });
 };
-
-module.exports = generic;

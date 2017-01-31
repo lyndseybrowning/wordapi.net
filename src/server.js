@@ -9,20 +9,16 @@ import customValidators from './middleware/customValidators';
 const app = express();
 const port = process.env.PORT || config.port;
 
-const server = {
-  init() {
-    app.server = http.createServer(app);
-    app.use('/', express.static(`${__dirname}/public`));
-    app.use(errorHandler);
-    app.use(expressValidator({ customValidators }));
-    app.set('json spaces', 2);
-    if(config.env !== 'test') {
-      app.server.listen(port);
-    }
-    routes.init(app);
+export default () => {
+  app.server = http.createServer(app);
+  app.use('/', express.static(`${__dirname}/public`));
+  app.use(errorHandler);
+  app.use(expressValidator({ customValidators }));
+  app.set('json spaces', 2);
+  if(config.env !== 'test') {
+    app.server.listen(port);
+  }
+  routes.init(app);
 
-    return app;
-  },
+  return app;
 };
-
-export default server;

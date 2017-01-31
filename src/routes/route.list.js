@@ -1,7 +1,11 @@
-import trie from '../trie';
-import dictionary from '../dictionary';
+import utils from '../utils';
+import dictionaryModule from '../dictionary';
+import trieModule from '../trie';
 
-const list = (app) => {
+const dictionary = dictionaryModule(utils.getDictionary());
+const trie = trieModule(utils.getDictionary());
+
+module.exports = (app) => {
   app.get('/api/list', (req, res) => {
     const length = req.query.length;
     const prefix = req.query.prefix;
@@ -27,7 +31,7 @@ const list = (app) => {
     let wordList = dictionary.get();
 
     if(req.query.prefix) {
-      wordList = trie.getPrefixArray(prefix.toLowerCase());
+      wordList = trie.filterPrefix(prefix.toLowerCase());
     }
 
     if(req.query.length) {
@@ -44,5 +48,3 @@ const list = (app) => {
     });
   });
 };
-
-module.exports = list;
