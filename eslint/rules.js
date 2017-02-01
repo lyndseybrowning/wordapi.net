@@ -26,7 +26,7 @@ module.exports = {
     // soft tab - 2 spaces
     "indent": [2, 2],
     // enforce spaces before and after but not for if, while and for
-    "keyword-spacing": [2, { "overrides": { "if": { "after": false }, "for": { "after": false }, "while": { "after": false } } }],
+    "keyword-spacing": [2, { "overrides": { "if": { "after": false }, "catch": { "after": false }, "throw": { "after": false }, "for": { "after": false }, "while": { "after": false } } }],
     // max length of code
     "max-len": [2, 80],
     // use PascalCase for constructors or classes
