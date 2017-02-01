@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import trie from '../src/trie';
+import trie from '../../src/trie';
 
 describe('Trie', () => {
   it('returns an error when the first argument is not an array', () => {

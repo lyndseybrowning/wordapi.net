@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import dictionary from '../src/dictionary';
+import dictionary from '../../src/dictionary';
 
 describe('Dictionary', () => {
   it('returns an error message when the first argument is not an array', () => {
