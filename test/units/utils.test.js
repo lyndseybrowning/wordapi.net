@@ -24,3 +24,10 @@ describe('getting a dictionary', () => {
     expect(actual).to.deep.equal(expected);
   });
 });
+
+describe('converting to lowercase', () => {
+  const actual = utils.toLower('ABC');
+  const expected = 'abc';
+
+  expect(actual).to.equal(expected);
+});

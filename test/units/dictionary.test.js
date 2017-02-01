@@ -8,13 +8,6 @@ describe('Dictionary', () => {
     expect(actual).to.equal(expected);
   });
 
-  it('expects an array in lowercase', () => {
-    const actual = dictionary(['WORD']);
-    const expected = 'The dictionary should be in lowercase';
-
-    expect(actual).to.equal(expected);
-  });
-
   it('returns an object literal', () => {
     const actual = dictionary(['cat', 'dog']);
     const expected = 'object';
