@@ -24,7 +24,6 @@ export default {
         .split(/\r?\n/)
         .filter(removeEmptyEntries)
         .map(toLower);
-
     } catch(e) {
       throw('The first argument must be a txt file');
     }
