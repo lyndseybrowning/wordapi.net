@@ -1,12 +1,10 @@
-export default (dictionary) => {
+import utils from './utils';
+
+const DEFAULT_DICT = utils.getDictionary();
+
+export default (dictionary = DEFAULT_DICT) => {
   if(!Array.isArray(dictionary)) {
     return 'The first argument must be an array';
-  }
-
-  const hasUpperCase = dictionary.some(word => word.toUpperCase() === word);
-
-  if(hasUpperCase) {
-    return 'The dictionary should be in lowercase';
   }
 
   return {
