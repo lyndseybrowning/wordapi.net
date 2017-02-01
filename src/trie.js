@@ -42,8 +42,7 @@ const recursePrefix = function(prefix, prefixFromTrie, wordsFound = []) {
   for(const node in prefixFromTrie) {
     if(node === '$') {
       wordsFound.push(currentWord);
-      currentWord = '';
-      continue;
+      currentWord = '';     
     }
     recursePrefix(prefix + node, prefixFromTrie[node], wordsFound);
   }
