@@ -17,7 +17,7 @@ export default {
     }
 
     try {
-      const file = path.join(dictionary);
+      const file = path.join(__dirname, dictionary);
 
       return fs.readFileSync(file)
         .toString()
