@@ -6,6 +6,10 @@ const toLower = (word) => {
   return word.toLowerCase();
 };
 
+const removeEmptyEntries = (entry) => {
+  return entry !== '';
+};
+
 export default {
   getDictionary(dictionary = config.dictionary.sowpods) {
     if(typeof dictionary !== 'string') {
@@ -17,8 +21,10 @@ export default {
 
       return fs.readFileSync(file)
         .toString()
-        .split('\r\n')
+        .split(/\r?\n/)
+        .filter(removeEmptyEntries)
         .map(toLower);
+
     } catch(e) {
       throw('The first argument must be a txt file');
     }
