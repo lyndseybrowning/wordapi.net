@@ -17,6 +17,10 @@ describe('getting a dictionary', () => {
 
   it('returns an array', () => {
     const testFile = `test/test.txt`;
-    expect(utils.getDictionary(testFile)).to.be.a('array');
+    const actual = utils.getDictionary(testFile);
+    const expected = ['hello', 'world'];
+
+    expect(actual).to.be.a('array');
+    expect(actual).to.deep.equal(expected);
   });
 });
