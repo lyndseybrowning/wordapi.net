@@ -28,4 +28,6 @@ export default {
       throw('The first argument must be a txt file');
     }
   },
+
+  toLower,
 };
