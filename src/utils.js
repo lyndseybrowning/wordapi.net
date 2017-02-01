@@ -8,11 +8,19 @@ const toLower = (word) => {
 
 export default {
   getDictionary(dictionary = config.dictionary.sowpods) {
-    const file = path.join(__dirname, dictionary);
+    if(typeof dictionary !== 'string') {
+      return 'The first argument must be a string';
+    }
 
-    return fs.readFileSync(file)
-      .toString()
-      .split('\r\n')
-      .map(toLower);
+    try {
+      const file = path.join(dictionary);
+
+      return fs.readFileSync(file)
+        .toString()
+        .split('\r\n')
+        .map(toLower);
+    } catch(e) {
+      throw('The first argument must be a txt file');
+    }
   },
 };
