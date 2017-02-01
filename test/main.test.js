@@ -1,2 +1,2 @@
-import './units.test';
-//mport './api.test';
+import units from './units.test';
+import api from './api.test';

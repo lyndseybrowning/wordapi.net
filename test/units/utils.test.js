@@ -16,7 +16,7 @@ describe('getting a dictionary', () => {
   });
 
   it('returns an array', () => {
-    const testFile = `test/test.txt`;
+    const testFile = `../test/test.txt`;
     const actual = utils.getDictionary(testFile);
     const expected = ['hello', 'world'];
 
