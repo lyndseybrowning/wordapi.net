@@ -39,7 +39,7 @@ module.exports = (app) => {
     }
 
     if(req.query.suffix) {
-      wordList = dictionary.filterBySuffix(suffix.toUpperCase(), wordList);
+      wordList = dictionary.filterBySuffix(suffix.toLowerCase(), wordList);
     }
 
     res.send({
