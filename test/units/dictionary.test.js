@@ -3,9 +3,9 @@ import dictionary from '../../src/dictionary';
 
 describe('Dictionary', () => {
   it('returns an error message when the first argument is not an array', () => {
-    const actual = dictionary('abc');
     const expected = 'The first argument must be an array';
-    expect(actual).to.equal(expected);
+
+    expect(() => dictionary('abc')).to.throw(expected);
   });
 
   it('returns an object literal', () => {
@@ -19,10 +19,9 @@ describe('Dictionary', () => {
     const length = 3;
 
     it('returns an error message when the first argument is not a number', () => {
-      const actual = words.filterByLength('abc');
       const expected = 'The first argument must be a number';
 
-      expect(actual).to.equal(expected);
+      expect(() => words.filterByLength('abc')).to.throw(expected);
     });
 
     it('filters the dictionary by length and returns a new array', () => {
@@ -45,10 +44,9 @@ describe('Dictionary', () => {
     });
 
     it('returns an error when the prefix is not a string', () => {
-      const actual = words.filterByPrefix(123);
       const expected = 'The first argument must be a string';
 
-      expect(actual).to.equal(expected);
+      expect(() => words.filterByPrefix(123)).to.throw(expected);
     });
 
     it('transforms the prefix to lowercase', () => {
@@ -78,10 +76,9 @@ describe('Dictionary', () => {
     });
 
     it('returns an error when the suffix is not a string', () => {
-      const actual = words.filterBySuffix(123);
       const expected = 'The first argument must be a string';
 
-      expect(actual).to.equal(expected);
+      expect(() => words.filterBySuffix(123)).to.throw(expected);
     });
 
     it('transforms the suffix to lowercase', () => {

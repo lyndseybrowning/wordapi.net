@@ -4,7 +4,7 @@ const DEFAULT_DICT = utils.getDictionary();
 
 export default (dictionary = DEFAULT_DICT) => {
   if(!Array.isArray(dictionary)) {
-    return 'The first argument must be an array';
+    throw('The first argument must be an array');
   }
 
   return {
@@ -14,7 +14,7 @@ export default (dictionary = DEFAULT_DICT) => {
 
     filterByLength(length) {
       if(typeof length !== 'number') {
-        return 'The first argument must be a number';
+        throw('The first argument must be a number');
       }
 
       return dictionary.filter(word => word.length === length);
@@ -26,7 +26,7 @@ export default (dictionary = DEFAULT_DICT) => {
       }
 
       if(typeof prefix !== 'string') {
-        return 'The first argument must be a string';
+        throw('The first argument must be a string');
       }
 
       return dictionary.filter((word) => {
@@ -40,7 +40,7 @@ export default (dictionary = DEFAULT_DICT) => {
       }
 
       if(typeof suffix !== 'string') {
-        return 'The first argument must be a string';
+        throw('The first argument must be a string');
       }
 
       return dictionary.filter((word) => {
