@@ -30,6 +30,12 @@ describe('Dictionary', () => {
 
       expect(actual).to.deep.equal(expected);
     });
+
+    it('throws when the second argument is not an array', () => {
+      expect(() => {
+        words.filterByLength(4, 'abc');
+      }).to.throw('The second argument must be an array');
+    });
   });
 
   describe('Filtering by prefix', () => {
@@ -62,6 +68,12 @@ describe('Dictionary', () => {
 
       expect(actual).to.deep.equal(expected);
     });
+
+    it('throws when the second argument is not an array', () => {
+      expect(() => {
+        words.filterByPrefix('abc', 'abc');
+      }).to.throw('The second argument must be an array');
+    });
   });
 
   describe('Filtering by suffix', () => {
@@ -93,6 +105,12 @@ describe('Dictionary', () => {
       const expected = ['javascript'];
 
       expect(actual).to.deep.equal(expected);
+    });
+
+    it('throws when the second argument is not an array', () => {
+      expect(() => {
+        words.filterBySuffix('ing', 'abc');
+      }).to.throw('The second argument must be an array');
     });
   });
 });
