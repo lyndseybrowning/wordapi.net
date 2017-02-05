@@ -42,7 +42,7 @@ const recursePrefix = function(prefix, prefixFromTrie, wordsFound = []) {
   for(const node in prefixFromTrie) {
     if(node === '$') {
       wordsFound.push(currentWord);
-      currentWord = '';     
+      currentWord = '';
     }
     recursePrefix(prefix + node, prefixFromTrie[node], wordsFound);
   }
@@ -52,7 +52,7 @@ const recursePrefix = function(prefix, prefixFromTrie, wordsFound = []) {
 
 export default (dictionary) => {
   if(!Array.isArray(dictionary)) {
-    return 'The first argument must be an array';
+    throw('The first argument must be an array');
   }
 
   const trie = createTrie(dictionary);
@@ -64,7 +64,7 @@ export default (dictionary) => {
 
     contains(word) {
       if(typeof word !== 'string') {
-        return 'The first argument must be a string';
+        throw('The first argument must be a string');
       }
 
       const letters = word.toLowerCase().split('');
@@ -87,7 +87,7 @@ export default (dictionary) => {
 
     filterPrefix(prefix) {
       if(typeof prefix !== 'string') {
-        return 'The first argument must be a string';
+        throw('The first argument must be a string');
       }
 
       const prefixFromTrie = getPrefix(prefix, trie);

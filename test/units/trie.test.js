@@ -3,10 +3,9 @@ import trie from '../../src/trie';
 
 describe('Trie', () => {
   it('returns an error when the first argument is not an array', () => {
-    const actual = trie('hello');
     const expected = 'The first argument must be an array';
 
-    expect(actual).to.equal(expected);
+    expect(() => trie('hello')).to.throw(expected);
   });
 
   it('returns an object', () => {
@@ -40,10 +39,9 @@ describe('Trie', () => {
     describe('validating a word', () => {
       it('returns an error message when the first argument is not a string', () => {
         const { contains } = trie(['dog', 'cat']);
-        const actual = contains(123);
         const expected = 'The first argument must be a string';
 
-        expect(actual).to.equal(expected);
+        expect(() => contains(123)).to.throw(expected);
       });
 
       it('checks the word exists and returns a boolean', () => {
@@ -59,10 +57,9 @@ describe('Trie', () => {
       const { filterPrefix } = trie(['dog', 'cat', 'car', 'sky', 'castle', 'friend']);
 
       it('returns an error message when the first argument is not a string', () => {
-        const actual = filterPrefix(124);
         const expected = 'The first argument must be a string';
 
-        expect(actual).to.equal(expected);
+        expect(() => filterPrefix(124)).to.throw(expected);
       });
 
       it('returns filtered words as an array', () => {
