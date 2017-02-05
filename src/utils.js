@@ -13,7 +13,7 @@ const removeEmptyEntries = (entry) => {
 export default {
   getDictionary(dictionary = config.dictionary.sowpods) {
     if(typeof dictionary !== 'string') {
-      return 'The first argument must be a string';
+      throw('The first argument must be a string');
     }
 
     try {
