@@ -12,15 +12,21 @@ export default (dictionary = DEFAULT_DICT) => {
       return dictionary;
     },
 
-    filterByLength(length) {
+    filterByLength(length, custom = []) {
       if(typeof length !== 'number') {
         throw('The first argument must be a number');
       }
 
-      return dictionary.filter(word => word.length === length);
+      if(!Array.isArray(custom)) {
+        throw('The second argument must be an array');
+      }
+
+      const list = custom.length > 0 ? custom : dictionary;
+
+      return list.filter(word => word.length === length);
     },
 
-    filterByPrefix(prefix) {
+    filterByPrefix(prefix, custom = []) {
       if(typeof prefix === 'undefined') {
         return dictionary;
       }
@@ -29,12 +35,18 @@ export default (dictionary = DEFAULT_DICT) => {
         throw('The first argument must be a string');
       }
 
-      return dictionary.filter((word) => {
+      if(!Array.isArray(custom)) {
+        throw('The second argument must be an array');
+      }
+
+      const list = custom.length > 0 ? custom : dictionary;
+
+      return list.filter((word) => {
         return word.substring(0, prefix.length) === prefix.toLowerCase();
       });
     },
 
-    filterBySuffix(suffix) {
+    filterBySuffix(suffix, custom = []) {
       if(typeof suffix === 'undefined') {
         return dictionary;
       }
@@ -43,7 +55,13 @@ export default (dictionary = DEFAULT_DICT) => {
         throw('The first argument must be a string');
       }
 
-      return dictionary.filter((word) => {
+      if(!Array.isArray(custom)) {
+        throw('The second argument must be an array');
+      }
+
+      const list = custom.length > 0 ? custom : dictionary;
+
+      return list.filter((word) => {
         const wordLen = word.length;
         const startAt = wordLen - suffix.length;
         return word.substring(startAt, wordLen) === suffix.toLowerCase();
