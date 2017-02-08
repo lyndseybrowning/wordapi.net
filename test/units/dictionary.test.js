@@ -6,6 +6,7 @@ describe('Dictionary', () => {
     const expected = 'The first argument must be an array';
 
     expect(() => dictionary('abc')).to.throw(expected);
+    expect(dictionary()).to.be.a('object');
   });
 
   it('returns an object literal', () => {
@@ -41,6 +42,13 @@ describe('Dictionary', () => {
   describe('Filtering by prefix', () => {
     const array = ['car', 'camper', 'taxi', 'sailboat', 'caravan', 'plane'];
     const words = dictionary(array);
+
+    it('accepts a custom array as a parameter', () => {
+      const actual = words.filterByPrefix('c', ['car', 'camper', 'dog']);
+      const expected = ['car', 'camper'];
+
+      expect(actual).to.deep.equal(expected);
+    });
 
     it('returns the whole dictionary when the prefix is undefined', () => {
       const actual = words.filterByPrefix();
@@ -79,6 +87,13 @@ describe('Dictionary', () => {
   describe('Filtering by suffix', () => {
     const array = ['hello', 'world', 'go', 'javascript'];
     const words = dictionary(array);
+
+    it('accepts a custom array as a parameter', () => {
+      const actual = words.filterBySuffix('r', ['car', 'camper', 'dog']);
+      const expected = ['car', 'camper'];
+
+      expect(actual).to.deep.equal(expected);
+    });
 
     it('returns the whole dictionary when the suffix is undefined', () => {
       const actual = words.filterBySuffix();

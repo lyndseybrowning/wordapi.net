@@ -43,7 +43,7 @@ module.exports = function(request, expect, app) {
 
       it('should return the words found as an Array', (done) => {
         request(app)
-          .get('/api/list?length=4&suffix=tree')
+          .get('/api/list?suffix=tree')
           .expect(200)
           .end((err, res) => {
             if(err) {

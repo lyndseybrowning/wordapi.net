@@ -5,13 +5,12 @@ import config from '../../src/config';
 describe('Error handler development', () => {
   const err = {
     message: 'This is an error',
-    stack: 'stack details',
-    status: 404
+    stack: 'stack details'
   };
 
   const res = {
     status(result) {
-      expect(result).to.equal(err.status);
+      expect(result).to.equal(500);
       return this;
     },
 
