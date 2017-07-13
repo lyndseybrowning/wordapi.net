@@ -1,5 +1,5 @@
 import fs from 'fs';
-import catchAll from './route.catchall';
+import catchAll from './catchall';
 
 const filterRoutes = (filename) => {
   return filename.split('.')[0] === 'route';
@@ -8,7 +8,7 @@ const filterRoutes = (filename) => {
 const initRoute = (app, route) => {
   const initRouteFile = require(`./${route}`);
 
-  if(typeof initRouteFile === 'function') {
+  if (typeof initRouteFile === 'function') {
     initRouteFile(app);
   }
 };
@@ -16,6 +16,7 @@ const initRoute = (app, route) => {
 const routes = {
   init(app, callback) {
     const routeFiles = fs.readdirSync(__dirname);
+
     routeFiles
       .filter(filterRoutes)
       .forEach(initRoute.bind(null, app));
