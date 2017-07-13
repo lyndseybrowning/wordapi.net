@@ -21,15 +21,15 @@ module.exports = (app, dictionary) => {
       });
     }
 
-    let result = [];
+    let wordList = [];
 
     if (prefix !== '') {
-      result = dictionary.getPrefix(prefix);
+      wordList = dictionary.getPrefix(prefix);
     }
 
     res.send({
-      wordsFound: result.length,
-      wordList: result,
+      wordsFound: wordList.length,
+      wordList,
     });
   });
 };
