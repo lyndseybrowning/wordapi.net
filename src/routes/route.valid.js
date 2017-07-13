@@ -1,12 +1,7 @@
-import utils from '../utils';
-import trieModule from '../trie';
-
-const trie = trieModule(utils.getDictionary());
-
-module.exports = (app) => {
+module.exports = (app, dictionary) => {
   app.get('/api/valid/:word', (req, res) => {
     const word = req.params.word.toLowerCase();
-    const valid = trie.contains(word);
+    const valid = dictionary.hasWord(word);
 
     res.send({
       word,
@@ -14,3 +9,4 @@ module.exports = (app) => {
     });
   });
 };
+;

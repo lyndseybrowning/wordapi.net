@@ -1,11 +1,4 @@
-import utils from '../utils';
-import dictionaryModule from '../dictionary';
-import trieModule from '../trie';
-
-const dictionary = dictionaryModule(utils.getDictionary());
-const trie = trieModule(utils.getDictionary());
-
-module.exports = (app) => {
+module.exports = (app, dictionary) => {
   app.get('/api/list', (req, res) => {
     const length = req.query.length;
     const prefix = req.query.prefix;
@@ -21,30 +14,22 @@ module.exports = (app) => {
 
     const errors = req.validationErrors();
 
-    if(errors) {
+    if (errors) {
       return res.status(500).send({
         url: req.url,
         errors,
       });
     }
 
-    let wordList = dictionary.get();
+    let result = [];
 
-    if(req.query.prefix) {
-      wordList = trie.filterPrefix(prefix.toLowerCase());
-    }
-
-    if(req.query.length) {
-      wordList = dictionary.filterByLength(Number(length), wordList);
-    }
-
-    if(req.query.suffix) {
-      wordList = dictionary.filterBySuffix(suffix.toLowerCase(), wordList);
+    if (prefix !== '') {
+      result = dictionary.getPrefix(prefix);
     }
 
     res.send({
-      wordsFound: wordList.length,
-      wordList,
+      wordsFound: result.length,
+      wordList: result,
     });
   });
 };

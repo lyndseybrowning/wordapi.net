@@ -1,5 +1,8 @@
 import fs from 'fs';
 import catchAll from './catchall';
+import utils from '../utils';
+
+const dictionary = utils.loadDictionary();
 
 const filterRoutes = (filename) => {
   return filename.split('.')[0] === 'route';
@@ -9,7 +12,7 @@ const initRoute = (app, route) => {
   const initRouteFile = require(`./${route}`);
 
   if (typeof initRouteFile === 'function') {
-    initRouteFile(app);
+    initRouteFile(app, dictionary);
   }
 };
 
