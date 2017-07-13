@@ -2,19 +2,15 @@ import fs from 'fs';
 import path from 'path';
 import config from './config';
 
-const toLower = (word) => {
-  return word.toLowerCase();
-};
-
-const removeEmptyEntries = (entry) => {
-  return entry !== '';
-};
-
 export default {
-  getDictionary(dictionary = config.dictionary.sowpods) {
+  getDictionary(dictionary = config.dictionary.sowpods) {  
     if(typeof dictionary !== 'string') {
       throw('The first argument must be a string');
     }
+
+    const removeEmptyEntries = (entry) => {
+      return entry !== '';
+    };
 
     try {
       const file = path.join(__dirname, dictionary);
@@ -29,5 +25,7 @@ export default {
     }
   },
 
-  toLower,
+  toLower(word) {
+    return word.toLowerCase();
+  }
 };
