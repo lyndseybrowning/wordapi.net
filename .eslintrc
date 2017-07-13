@@ -1,12 +1,12 @@
 {
   "env": {
-    "node": 1
+    "node": true
   },
   "parserOptions": {
     "ecmaVersion": 2017,
     "sourceType": "module",
     "ecmaFeatures": {
-      "impliedStrict": 1,
+      "impliedStrict": true,
       "experimentalObjectRestSpread": true
     }
   },
