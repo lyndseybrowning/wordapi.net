@@ -14,7 +14,7 @@ const initRoute = (app, route) => {
 };
 
 const routes = {
-  init(app, callback) {
+  init(app) {
     const routeFiles = fs.readdirSync(__dirname);
 
     routeFiles
