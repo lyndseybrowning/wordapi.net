@@ -32,4 +32,16 @@ export default {
   },
 
   toLower,
+
+  filterByLength(list, length) {
+    return list.filter(word => word.length === length);
+  },
+
+  filterBySuffix(list, suffix) {
+      return list.filter((word) => {
+        const wordLen = word.length;
+        const startAt = wordLen - suffix.length;
+        return word.substring(startAt, wordLen) === suffix.toLowerCase();
+      });
+    },
 };

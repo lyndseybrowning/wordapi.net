@@ -1,3 +1,6 @@
+import trie from 'trie-prefix-tree';
+import utils from '../utils';
+
 module.exports = (app, dictionary) => {
   app.get('/api/list', (req, res) => {
     const length = req.query.length;
@@ -23,8 +26,16 @@ module.exports = (app, dictionary) => {
 
     let wordList = [];
 
-    if (prefix !== '') {
-      wordList = dictionary.getPrefix(prefix);
+    if (prefix) {
+      wordList = dictionary.getPrefix(prefix, false);
+    }
+
+    if (length) {
+      wordList = utils.filterByLength(wordList, parseInt(length, 10));
+    }
+
+    if (suffix) {
+      wordList = utils.filterBySuffix(wordList, suffix);
     }
 
     res.send({
