@@ -1,9 +1,9 @@
 module.exports = function(request, expect, app) {
   describe('GET /api/list', () => {
-      it('should send a 500 status when no required params are passed', (done) => {
+      it('should send a 400 status when no required params are passed', (done) => {
         request(app)
           .get('/api/list?dummy=1')
-          .expect(500, done);
+          .expect(400, done);
       });
 
       it('should respond with JSON', (done) => {
