@@ -44,4 +44,20 @@ export default {
         return word.substring(startAt, wordLen) === suffix.toLowerCase();
       });
     },
+
+    randomiseList(list) {
+      return list.map((item) => {
+        const word = [...item];
+        
+        item.split('').forEach((letter, index) => {
+          const randomPos = Math.floor(Math.random() * (index + 1));
+          const letterAtRandomPos = word[randomPos];
+
+          word[randomPos] = letter;
+          word[index] = letterAtRandomPos;
+        });
+        
+        return word.join('');
+      });
+    },
 };
