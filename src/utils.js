@@ -23,7 +23,7 @@ export default {
 
       return dictionary;
     } catch(e) {
-      throw('The first argument must be a txt file');
+      throw('loadDictionary expects a valid path');
     }
   },
 
