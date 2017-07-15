@@ -1,4 +1,3 @@
-import trie from 'trie-prefix-tree';
 import utils from '../utils';
 
 module.exports = (app, dictionary) => {
