@@ -10,8 +10,8 @@ module.exports = (app, dictionary) => {
 
     res.json({
         word,
-        anagrams,
         count,
+        anagrams,
     });
   });
 
@@ -23,8 +23,8 @@ module.exports = (app, dictionary) => {
 
     res.json({
         length,
-        anagrams,
         count,
+        anagrams,
     });
   });
 };

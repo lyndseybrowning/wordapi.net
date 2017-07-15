@@ -45,19 +45,28 @@ export default {
       });
     },
 
-    randomiseList(list) {
-      return list.map((item) => {
-        const word = [...item];
-        
-        item.split('').forEach((letter, index) => {
-          const randomPos = Math.floor(Math.random() * (index + 1));
-          const letterAtRandomPos = word[randomPos];
+    randomiseWord(word) {
+      const shuffle = [...word];
 
-          word[randomPos] = letter;
-          word[index] = letterAtRandomPos;
-        });
-        
-        return word.join('');
+      word.split('').forEach((letter, index) => {
+        const randomPos = Math.floor(Math.random() * (index + 1));
+        const letterAtRandomPos = shuffle[randomPos];
+
+        shuffle[randomPos] = letter;
+        shuffle[index] = letterAtRandomPos;
+      });
+      
+      return shuffle;
+    },
+
+    randomiseList(list) {
+      return list.map((word) => {
+        const shuffle = this.randomiseWord(word);
+
+        return {
+          anagram: shuffle.join(''),
+          word,
+        };
       });
     },
 };
