@@ -10,5 +10,8 @@
       "experimentalObjectRestSpread": true
     }
   },
-  "extends": "./eslint/rules.js"
+  "extends": "./eslint/rules.js",
+  "plugins": [
+    "mocha"
+  ]
 }

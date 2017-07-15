@@ -96,5 +96,6 @@ module.exports = {
     "quote-props": [2, "as-needed", { "keywords": true }],
     // prefer ${name} vs ${ name }
     "template-curly-spacing": 2,
+    "mocha/no-exclusive-tests": "error",
   }
 };
