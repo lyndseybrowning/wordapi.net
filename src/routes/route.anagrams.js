@@ -27,4 +27,10 @@ module.exports = (app, dictionary) => {
         anagrams,
     });
   });
+
+  app.post('/api/anagrams/solve/:body', (req, res) => {
+    res.json({
+        rca: ['arc', 'car'],
+    });
+  });
 };
