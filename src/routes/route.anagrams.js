@@ -28,9 +28,19 @@ module.exports = (app, dictionary) => {
     });
   });
 
-  app.post('/api/anagrams/solve/:body', (req, res) => {
-    res.json({
-        rca: ['arc', 'car'],
-    });
+  app.post('/api/anagrams/solve', (req, res) => {
+    if (Object.keys(req.body).length === 0) {
+      return res.status(400).send({
+        url: req.url,
+        errors: 'Expected array with at least one value, none was found',
+      });
+    }
+
+    const anagrams = req.body.reduce((items, item) => {
+      items[item] = dictionary.getAnagrams(item);
+      return items;
+    }, {});
+   
+    res.json(anagrams);
   });
 };
