@@ -5,6 +5,7 @@ This API allows you (The User!) to fish out those words at the tip of your tongu
 - Fish for words based on Letter Length
 - Fish for words using Prefixes
 - Fish for words using Suffixes
+- Fish for anagrams
 
 But this is only the beginning! 
 
