@@ -9,9 +9,9 @@ module.exports = (app, dictionary) => {
     const count = anagrams.length;
 
     res.json({
-        word,
-        count,
-        anagrams,
+      word,
+      count,
+      anagrams,
     });
   });
 
@@ -22,9 +22,9 @@ module.exports = (app, dictionary) => {
     const count = anagrams.length;
 
     res.json({
-        length,
-        count,
-        anagrams,
+      length,
+      count,
+      anagrams,
     });
   });
 
