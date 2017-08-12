@@ -36,10 +36,12 @@ var routes = {
   init: function init(app) {
     var routeFiles = _fs2.default.readdirSync(__dirname);
 
-    app.get('/', function (req, res) {
+    app.get('/', function (req, res, next) {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
       res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype');
+
+      next();
     });
 
     routeFiles.filter(filterRoutes).forEach(initRoute.bind(null, app));
