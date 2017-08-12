@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon src --exec babel-node src",
-    "build": "babel src -s -D -d dist",
+    "build": "babel src -D -d dist",
     "start": "NODE_ENV=production node dist",
     "lint": "eslint src",
     "test": "NODE_ENV=test npm run lint && mocha test/main.test.js --compilers js:babel-core/register -w --recursive",
