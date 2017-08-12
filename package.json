@@ -1,7 +1,7 @@
 {
-  "name": "dictionary-api",
-  "version": "1.0.0",
-  "description": "Dictionary API ",
+  "name": "word-api-net",
+  "version": "0.0.1",
+  "description": "Word API",
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon src --exec babel-node src",
